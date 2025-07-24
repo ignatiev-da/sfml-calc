@@ -61,12 +61,10 @@
 .history
 .ionide
 
-# Cmake build
+# build, resources
 build/
+resources/
 
 # System files
 .DS_Store
 Thumbs.db
-
-*.ttf
-*.png

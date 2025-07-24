@@ -1,15 +1,16 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Calculator.h"
+#include "../include/Constants.h"
+#include "../include/Calculator.h"
 
 int main()
 {
     // Создаем окно приложения с заданными параметрами
-    sf::RenderWindow window(sf::VideoMode(390, 570), L"SFML Калькулятор");
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), L"SFML Калькулятор");
 
     // Загружаем шрифт
     std::unique_ptr<sf::Font> font = std::make_unique<sf::Font>();
-    if (!font->loadFromFile("arial.ttf"))
+    if (!font->loadFromFile("../resources/fonts/arial.ttf"))
     {
         std::cerr << "Ошибка при загрузке шрифта!\n";
         return -1;

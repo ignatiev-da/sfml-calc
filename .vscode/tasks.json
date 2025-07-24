@@ -10,7 +10,7 @@
         "-g",
         "${workspaceFolder}/src/*.cpp",
         "-o",
-        "${workspaceFolder}/sfml-calc",
+        "${workspaceFolder}/build/sfml-calc",
         "-lsfml-graphics",
         "-lsfml-window",
         "-lsfml-system",

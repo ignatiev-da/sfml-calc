@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 #include <SFML/Graphics.hpp>
+#include "Constants.h"
 #include "Button.h"
 #include "ExpressionEvaluator.h"
 
@@ -28,7 +29,7 @@ public:
         displayText->setFillColor(sf::Color::Black);
 
         // Создаем фон окна
-        windowBackground = std::make_unique<sf::RectangleShape>(sf::Vector2f(390, 570));
+        windowBackground = std::make_unique<sf::RectangleShape>(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
         windowBackground->setFillColor(sf::Color::White);
 
         // Цвета фона разных типов кнопок
@@ -75,7 +76,7 @@ public:
 
         // Загружаем текстуру логотипа
         logoTexture = std::make_unique<sf::Texture>();
-        if (!logoTexture->loadFromFile("logo.png"))
+        if (!logoTexture->loadFromFile("../resources/images/logo.png"))
         {
             std::cerr << "Ошибка при загрузке логотипа!" << std::endl;
         }
