@@ -68,7 +68,9 @@ SFML Calc использует следующий технологический
 ### Сборка
 
 ```
-    g++.exe -g src/main.cpp -o build/sfml-calc -lsfml-graphics -lsfml-window -lsfml-system -std=c++20 -mwindows
+g++.exe -g src/main.cpp -o build/sfml-calc 
+    -lsfml-graphics -lsfml-window -lsfml-system 
+    -std=c++20 -mwindows
 ```
 
 ## 🏋️‍♀️ Автор
