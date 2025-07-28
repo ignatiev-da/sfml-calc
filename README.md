@@ -65,6 +65,12 @@ SFML Calc использует следующий технологический
 
 Убедитесь, что [Visual Studio Code](https://code.visualstudio.com/), [расширение C/C++ от Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools), [MSYS2](https://www.msys2.org/) и [SFML](http://www.sfml-dev.org) установлены.
 
+### Сборка
+
+```
+    g++.exe -g src/main.cpp -o build/sfml-calc -lsfml-graphics -lsfml-window -lsfml-system -std=c++20 -mwindows
+```
+
 ## 🏋️‍♀️ Автор
 
 Денис Игнатьев (разработка, тестирование)
