@@ -61,9 +61,8 @@
 .history
 .ionide
 
-# build, resources
+# build
 build/
-resources/
 
 # System files
 .DS_Store

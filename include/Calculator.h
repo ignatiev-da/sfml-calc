@@ -16,14 +16,14 @@ public:
     // Конструктор калькулятора
     explicit Calculator(sf::Font &font) : isResult(false)
     {
-        // Создаем область отображения
-        display = std::make_unique<sf::RectangleShape>(sf::Vector2f(350, 50));
+        // Создаем дисплей
+        display = std::make_unique<sf::RectangleShape>(sf::Vector2f(DISPLAY_WIDTH, DISPLAY_HEIGHT));
         display->setPosition(20, 20);
         display->setFillColor(sf::Color(173, 216, 230));
         display->setOutlineColor(sf::Color::Black);
         display->setOutlineThickness(2);
 
-        // Создаем текстовое поле для отображения
+        // Создаем текстовое поле в дисплее
         displayText = std::make_unique<sf::Text>("", font, 30);
         displayText->setPosition(30, 30);
         displayText->setFillColor(sf::Color::Black);
@@ -104,20 +104,13 @@ public:
                 }
             }
         }
-        else if (event.type == sf::Event::MouseButtonReleased &&
-                 event.mouseButton.button == sf::Mouse::Left)
-        {
-            // Снимаем эффекты нажатия
-            for (auto &button : buttons)
-            {
-                button->releaseEffect();
-            }
-        }
         else if (event.type == sf::Event::KeyPressed)
         {
             processKeyboardInput(event);
         }
-        else if (event.type == sf::Event::KeyReleased)
+        else if (event.type == sf::Event::MouseButtonReleased &&
+                     event.mouseButton.button == sf::Mouse::Left ||
+                 event.type == sf::Event::KeyReleased)
         {
             // Снимаем эффекты нажатия
             for (auto &button : buttons)
@@ -169,10 +162,6 @@ private:
                 double result = ExpressionEvaluator::evaluate(input);
                 input = std::to_string(result);
                 // Убираем лишние нули после точки
-                /* if (input.ends_with(".000000"))
-                {
-                    input = input.substr(0, input.find('.'));
-                } */
                 if (input.find('.') != std::string::npos)
                 {
                     input.erase(input.find_last_not_of('0') + 1, std::string::npos);
@@ -199,7 +188,16 @@ private:
         {
             // Обработка операторов
             std::string_view ops = "+-*/";
-            if (!input.empty() && input != "Error" && ops.find(input.back()) == std::string_view::npos && input.length() < 19)
+            if (input.empty())
+            {
+                // Разрешаем ставить только минус в начале
+                if (text == "-")
+                {
+                    input += text;
+                    isResult = false;
+                }
+            }
+            else if (!input.empty() && input != "Error" && ops.find(input.back()) == std::string_view::npos && input.length() < 19)
             {
                 input += text;
                 isResult = false;
